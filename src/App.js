@@ -25,8 +25,20 @@ const Boton = styled.button`
 `;
 
 function App() {
-  const consultarAPI = () => {
-    console.log("consultando...");
+  //Agregamos async para que no se siga ejecutando el código hasta que se complete el await
+  const consultarAPI = async () => {
+    //Fetch retorna una promise
+    const api = await fetch(
+      "https://breaking-bad-quotes.herokuapp.com/v1/quotes"
+    );
+    const frase = await api.json();
+    console.log(frase[0]);
+
+
+    // otra forma de obtener la frase desde la promise que trae fetch
+    // siempre que en consola una promise diga pending se accede con un .then a menos que uses await
+    // const frase = api.then((respuesta) => respuesta.json());
+    // frase.then((resultado) => console.log(resultado));
   };
 
   return (
