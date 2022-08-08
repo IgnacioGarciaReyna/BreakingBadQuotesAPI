@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "@emotion/styled";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Frase from "./components/Frase";
 
 const Contenedor = styled.div`
@@ -24,6 +24,12 @@ const Boton = styled.button`
   padding: 1rem 3rem;
   font-size: 2rem;
   border: 2px solid black;
+  transition: background-size .8s ease;
+
+  :hover {
+    cursor: pointer;
+    background-size: 400px;
+  }
 `;
 
 function App() {
@@ -44,6 +50,12 @@ function App() {
     // const frase = api.then((respuesta) => respuesta.json());
     // frase.then((resultado) => console.log(resultado));
   };
+
+  //Cargar una frase al entrar a la página (sin tocar el botón)
+  //El arreglo vacio son las dependencias
+  useEffect(() => {
+    consultarAPI();
+  }, []);
 
   return (
     <Contenedor>
